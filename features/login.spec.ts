@@ -16,6 +16,19 @@ test.describe('OrangeHRM - authentication', () => {
     await loginPage.step_navigate();
     await loginPage.step_login(users.emptyPassword);
     await loginPage.verify_passwordFieldError(expected.errors.requiredField); 
-    
+
   });
+
+  test('should show error when login username error scenario', async ({ loginPage }) => {
+  await loginPage.step_navigate();
+  await loginPage.step_login_username_errors(users.invalid);
+  await loginPage.verify_passwordFieldError(expected.errors.requiredField);
+});
+
+ test('should reach the dashboard after valid login2', async ({ loginPage,dashboardPage }) => {
+  await loginPage.step_navigate();
+    await loginPage.step_login_password_error(users.admin);
+    await dashboardPage.verify_onDashboard();
+    await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
+});
 });

@@ -7,7 +7,9 @@ export class LoginPage extends BasePage {
   readonly path = '/web/index.php/auth/login';
 
   private usernameInput = this.page.locator('//input[@name="username"]');
+  private usernameInputError = this.page.locator('//input[@name="usernameinvalid"]');
   private passwordInput = this.page.locator('//input[@name="password"]');
+  private passwordInputError = this.page.locator('//input[@name="passwordinvalid"]');
   private loginButton = this.page.locator('//button[@type="submit"]');
   private errorMessage = this.page.locator("//p[contains(@class,'oxd-alert-content-text')]");
   private passwordFieldError = this.page.locator(
@@ -40,6 +42,23 @@ export class LoginPage extends BasePage {
     await this.waitForPageLoad();
     return this;
   }
+
+  async step_login_username_errors(credentials: LoginCredentials): Promise<this> {
+    await this.usernameInputError.fill(credentials.username);
+    await this.passwordInput.fill(credentials.password);
+    await this.loginButton.click();
+    await this.waitForPageLoad();
+    return this;
+  }
+
+  async step_login_password_error(credentials: LoginCredentials): Promise<this> {
+    await this.usernameInput.fill(credentials.username);
+    await this.passwordInputError.fill(credentials.password);
+    await this.loginButton.click();
+    await this.waitForPageLoad();
+    return this;
+  }
+
 
   /**
    * Verifies the login error text matches expectations.

@@ -16,5 +16,6 @@ test.describe('OrangeHRM - authentication', () => {
     await loginPage.step_navigate();
     await loginPage.step_login(users.emptyPassword);
     await loginPage.verify_passwordFieldError(expected.errors.requiredField); 
+    
   });
 });

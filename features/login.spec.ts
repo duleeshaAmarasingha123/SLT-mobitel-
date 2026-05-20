@@ -31,4 +31,11 @@ test.describe('OrangeHRM - authentication', () => {
     await dashboardPage.verify_onDashboard();
     await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
 });
+
+test.skip('should reach the dashboard after valid login skip', async ({ loginPage,dashboardPage }) => {
+  await loginPage.step_navigate();
+    await loginPage.step_login_password_error(users.admin);
+    await dashboardPage.verify_onDashboard();
+    await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
+});
 });

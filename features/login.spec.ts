@@ -38,4 +38,17 @@ test.skip('should reach the dashboard after a valid login skip', async ({ loginP
     await dashboardPage.verify_onDashboard();
     await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
 });
+
+test('should allow login regardless of username letter casing', async ({ loginPage,dashboardPage}) => {
+   await loginPage.step_navigate();
+   await loginPage.step_login({
+    username: 'ADMIN', // uppercase username
+    password: 'admin123',
+
+   });
+  await dashboardPage.verify_onDashboard();
+  await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
+
+});
+
 });

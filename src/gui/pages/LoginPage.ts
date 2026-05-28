@@ -80,5 +80,6 @@ export class LoginPage extends BasePage {
     await this.passwordFieldError.waitFor({ state: 'visible' });
     expect((await this.passwordFieldError.innerText()).trim()).toContain(expectedText);
     return this;
+    
   }
 }

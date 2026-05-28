@@ -48,6 +48,7 @@ test('should allow login regardless of username letter casing', async ({ loginPa
    });
   await dashboardPage.verify_onDashboard();
   await dashboardPage.verify_pageTitle(expected.labels.pageTitle);
+  
 
 });
 
